@@ -21,10 +21,11 @@ const BookingHistory = () => {
                 Booking History
             </h1>
 
-            <div className="max-w-4xl mx-auto bg-white p-6 shadow-md rounded-xl">
+            <div className="w-full bg-white p-6 shadow-md rounded-xl overflow-x-auto">
                 <table className="w-full border-collapse border border-gray-200">
                     <thead>
-                        <tr className="bg-gray-100">
+                        <tr className="bg-gray-100 text-left">
+                            <th className="p-3 border">S.No</th>
                             <th className="p-3 border">Date</th>
                             <th className="p-3 border">Service</th>
                             <th className="p-3 border">Status</th>
@@ -32,15 +33,16 @@ const BookingHistory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {bookings.map((booking) => (
-                            <tr key={booking.id} className="text-center border hover:bg-gray-50">
+                        {bookings.map((booking, index) => (
+                            <tr key={booking.id} className="text-left border hover:bg-gray-50">
+                                <td className="p-3 border text-center">{index + 1}</td>
                                 <td className="p-3 border">{new Date(booking.date).toLocaleDateString()}</td>
                                 <td className="p-3 border">{booking.service}</td>
-                                <td className={`p-3 border font-bold 
+                                <td className={`p-3 border font-bold text-center
                                     ${booking.status === "Completed" ? "text-green-600" : "text-red-600"}`}>
                                     {booking.status}
                                 </td>
-                                <td className="p-3 border">₹{booking.price}</td>
+                                <td className="p-3 border text-right">₹{booking.price}</td>
                             </tr>
                         ))}
                     </tbody>
